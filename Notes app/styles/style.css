@@ -21,12 +21,14 @@ body{
     border-radius: 5px;
     padding: 15px 20px 20px;
 }
-.add-box, .icon{
+.add-box, .icon, .bottom-content{
     display: flex;
     align-items: center;
+    justify-content: space-between ;
+}
+.add-box{
     justify-content: center;
     flex-direction: column;
-
 }
 .add-box .icon{
     border: dashed 2px #88ABFF;
@@ -37,14 +39,36 @@ body{
     font-size: 40px;
     cursor: pointer;
 }
+.wrapper .note{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
 .add-box p{
     color: #88ABFF;
     margin-top: 15px;
     font-size: 15px;
 }
-.note{
-
+.note p{
+    font-size: 22px;
+    font-weight: 500;
 }
-.note .details{
-    
+.note span{
+    display: block;
+    margin-top: 5px;
+    color: #575757;
+    font-size: 16px;
+}
+.note .bottom-content{
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
+.bottom-content span{
+    color: #6d6d6d;
+    font-size: 13px;
+}
+.bottom-content .settings i {
+    color: #6d6d6d;
+    font-size: 15px;
+    cursor: pointer;
 }
