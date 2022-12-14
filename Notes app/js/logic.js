@@ -23,6 +23,7 @@ const months = ['January', "February", 'March', 'April', 'May', "June", 'July', 
 
 addNote.addEventListener('click', (e) => {
     e.preventDefault()
+
     let noteTitle = titleTag.value 
     let noteDesc = descTag.value
     if(noteTitle || noteDesc){
@@ -47,6 +48,39 @@ addNote.addEventListener('click', (e) => {
 
     titleTag.value = ""
     descTag.value = ""
+
+
+    showNotes()
 })
 
 // DISPLAYING ALL NOTES
+let showNotes = () => {
+    document.querySelectorAll('.note').forEach(note => {note.remove()})
+    notes.forEach((note) => {
+        let newLi = `<li class="note">
+                        <div class="details">
+                            <p>${note.title}</p>
+                            <span>${note.desc}</span>
+                        </div>
+                        <div class="bottom-content">
+                            <span>${note.date}</span>
+                            <div class="settings"> 
+                                <i class="uil uil-ellipsis-h"></i>
+                                <ul class="menu">
+                                    <li><i class="uil uil-pen"></i>Edit</li>
+                                    <li><i class="uil uil-trash"></i>Delete</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>`
+
+        addBtn.insertAdjacentHTML('afterEnd', newLi)
+    });
+}
+showNotes()
+
+// Delete note
+const delBtn = document.querySelector('.uil-trash').parentElement
+delBtn.addEventListener('click', ()=> {
+    
+})
