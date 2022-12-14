@@ -7,9 +7,13 @@ const popupClose = document.querySelector('.close')
 const notes = JSON.parse(localStorage.getItem('notes') || "[]")
 
 addBtn.addEventListener('click', () => {
+    document.querySelector('#title').placeholder = ''
+    document.querySelector('#desc').placeholder = ''
     popup.style.display = 'block'
 })
 popupClose.addEventListener('click', () => {
+    titleTag.value = ""
+    descTag.value = ""
     popup.style.display = 'none'
 })
 
@@ -56,7 +60,7 @@ addNote.addEventListener('click', (e) => {
 // DISPLAYING ALL NOTES
 let showNotes = () => {
     document.querySelectorAll('.note').forEach(note => {note.remove()})
-    notes.forEach((note) => {
+    notes.forEach((note, index) => {
         let newLi = `<li class="note">
                         <div class="details">
                             <p>${note.title}</p>
@@ -67,8 +71,8 @@ let showNotes = () => {
                             <div class="settings"> 
                                 <i class="uil uil-ellipsis-h"></i>
                                 <ul class="menu">
-                                    <li><i class="uil uil-pen"></i>Edit</li>
-                                    <li><i class="uil uil-trash"></i>Delete</li>
+                                    <li onClick="editNote(${index}, '${note.title}', '${note.desc}')"><i class="uil uil-pen"></i>Edit</li>
+                                    <li onClick="deleteNote(${index})"><i class="uil uil-trash"></i>Delete</li>
                                 </ul>
                             </div>
                         </div>
@@ -80,7 +84,50 @@ let showNotes = () => {
 showNotes()
 
 // Delete note
-const delBtn = document.querySelector('.uil-trash').parentElement
-delBtn.addEventListener('click', ()=> {
+let deleteNote = (noteID) =>{
+    notes.splice(noteID, 1)
+    localStorage.setItem('notes', JSON.stringify(notes))
+    showNotes()
+}
+
+let editNote = (noteID, noteTitle, noteDesc, noteDate) =>{
+    popup.style.display = 'block'
+    // let currentNote = notes[noteID]
+    console.log(noteTitle, noteDesc)
+
+
+    document.querySelector('#title').placeholder = `${noteTitle}`
+    document.querySelector('#desc').placeholder = `${noteDesc}`
     
-})
+
+
+
+
+
+    // e.preventDefault()
+
+    // newTitleTag.value = currentNote.title
+    
+
+
+    // let newNoteTitle = currentNote.title 
+    // let newNoteDesc = currentNote.desc
+    // if(noteTitle || noteDesc){
+    //     // getting date
+    //     let dateObj = new Date()
+    //     let month = months[dateObj.getMonth()]
+    //     let day = dateObj.getDay()
+    //     let year = dateObj.getFullYear()
+    //     let dateStr = `${month} ${day}, ${year}`
+
+    //     let newNote = {
+    //         title: noteTitle,
+    //         desc: noteDesc,
+    //         date: dateStr
+    //     }
+    //     notes.push(newNote)
+
+    //     localStorage.setItem('notes', JSON.stringify(notes))
+    //     console.log(newNote)
+    //     popupClose.click()
+}
