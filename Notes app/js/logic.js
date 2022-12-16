@@ -2,18 +2,21 @@
 
 const addBtn = document.querySelector('.add-box')
 const popup = document.querySelector('.popup-box')
+const popupTitle = document.querySelector('header p')
 const popupClose = document.querySelector('.close')
 // Get notes from localstorage and parse it to JS or pass an empty array as notes
 const notes = JSON.parse(localStorage.getItem('notes') || "[]")
+let isUpdate = false, updateID
 
 addBtn.addEventListener('click', () => {
-    document.querySelector('#title').placeholder = ''
-    document.querySelector('#desc').placeholder = ''
+
     popup.style.display = 'block'
 })
 popupClose.addEventListener('click', () => {
     titleTag.value = ""
     descTag.value = ""
+    popupTitle.innerText = "Add a new note"
+    addNote.innerText = "Create note"
     popup.style.display = 'none'
 })
 
@@ -43,10 +46,16 @@ addNote.addEventListener('click', (e) => {
             desc: noteDesc,
             date: dateStr
         }
-        notes.push(newNote)
+        if(!isUpdate) {
+            notes.push(newNote)
+        } else{
+            notes[updateID] = newNote
+        }
 
         localStorage.setItem('notes', JSON.stringify(notes))
         console.log(newNote)
+        isUpdate = false
+
         popupClose.click()
     }
 
@@ -90,44 +99,19 @@ let deleteNote = (noteID) =>{
     showNotes()
 }
 
-let editNote = (noteID, noteTitle, noteDesc, noteDate) =>{
-    popup.style.display = 'block'
+let editNote = (noteID, noteTitle, noteDesc) =>{
+    isUpdate = true
+    updateID = noteID
+    addBtn.click()
+    titleTag.focus()
     // let currentNote = notes[noteID]
     console.log(noteTitle, noteDesc)
 
+    popupTitle.innerText = "Update a note"
+    addNote.innerText = "Update note"
 
-    document.querySelector('#title').placeholder = `${noteTitle}`
-    document.querySelector('#desc').placeholder = `${noteDesc}`
-    
-
-
-
+    titleTag.value = noteTitle
+    descTag.value = noteDesc
 
 
-    // e.preventDefault()
-
-    // newTitleTag.value = currentNote.title
-    
-
-
-    // let newNoteTitle = currentNote.title 
-    // let newNoteDesc = currentNote.desc
-    // if(noteTitle || noteDesc){
-    //     // getting date
-    //     let dateObj = new Date()
-    //     let month = months[dateObj.getMonth()]
-    //     let day = dateObj.getDay()
-    //     let year = dateObj.getFullYear()
-    //     let dateStr = `${month} ${day}, ${year}`
-
-    //     let newNote = {
-    //         title: noteTitle,
-    //         desc: noteDesc,
-    //         date: dateStr
-    //     }
-    //     notes.push(newNote)
-
-    //     localStorage.setItem('notes', JSON.stringify(notes))
-    //     console.log(newNote)
-    //     popupClose.click()
 }
