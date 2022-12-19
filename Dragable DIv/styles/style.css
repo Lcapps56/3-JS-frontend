@@ -17,6 +17,10 @@ body{
     transform: translate(-50%, -50%);
     border-radius: 10px;
 }
+.wrapper header.active{
+    user-select: none;;
+    cursor: move;
+}
 header{
     font-size: 25px;
     padding: 15px 40px;

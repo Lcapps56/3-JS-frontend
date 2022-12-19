@@ -15,9 +15,10 @@ let onDrag = ({movementX, movementY}) => {
 
 
 header.addEventListener('mousedown', ()=>{
+    header.classList.add('active')
     header.addEventListener('mousemove', onDrag)
 })
-header.addEventListener('mouseup', ()=>{
+document.addEventListener('mouseup', ()=>{
     header.removeEventListener('mousemove', onDrag)
 })
 
