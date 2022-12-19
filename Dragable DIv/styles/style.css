@@ -6,7 +6,7 @@
     font-family: 'Poppins', serif;
 }
 body{
-    background: #6f36ff
+    background: #6f36ff;
 }
 .wrapper{
     background: white;
@@ -17,12 +17,30 @@ body{
     transform: translate(-50%, -50%);
     border-radius: 10px;
 }
-header, .content p{
+header{
     font-size: 25px;
     padding: 15px 40px;
     font-weight: 500;
     border-bottom: 1px solid rgba(0, 0, 0, 0.232);
 }
+.content i{
+    color: #6f36ff;
+    font-size: 60px;
+    border: 5px solid #6f36ff;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 10px;
+}
 .content{
     text-align: center;;
+    padding: 20px;
+}
+.content h2{
+    font-size: 30px;
+    font-weight: 500;
+    margin: 15px;
+}
+.content p{
+    margin: 15px;
+ 
 }
