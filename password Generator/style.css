@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto:wght@100;400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'roboto', serif;
+    color: white
+}
+body{
+    text-align:center;
+    background: rgb(241, 223, 200);
+}
+header{
+    padding: 40px;
+}
+header{
+    border-bottom: .5px solid rgba(0, 0, 0, 0.143);
+}
+header h1{
+    font-size: 60px;
+    font-weight: lighter;
+    margin: 20px;
+}
+
+.content{
+    padding: 50px;
+}
+.content button{
+    background: rgb(243, 170, 131);
+    color: white;
+    font-size: 20px;
+    padding: 15px 30px;
+    font-family: 'roboto', serif;
+    border: 1px solid white;
+    border-radius: 50px;;
+    margin-top: 40px;
+    transition: .05s;
+}
+.content button:hover{
+
+    background: rgb(227, 158, 121);
+}
+.passwordBox{
+    margin-top: 50px;
+}
+span{
+    font-size: 30px;
+    border-bottom: .5px solid rgba(0, 0, 0, 0.143)
+}

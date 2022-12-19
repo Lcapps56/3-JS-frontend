@@ -19,6 +19,7 @@ header.addEventListener('mousedown', ()=>{
     header.addEventListener('mousemove', onDrag)
 })
 document.addEventListener('mouseup', ()=>{
+    header.classList.remove('active')
     header.removeEventListener('mousemove', onDrag)
 })
 
