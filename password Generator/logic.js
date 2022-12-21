@@ -4,10 +4,10 @@ const alphabet = [ "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","
 const specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "="]
 const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 const characters = [...alphabet,...specialChar,...numbers]
-let pass = []
 
 
 let makePassword = () => {
+    let pass = []
     let passLength = Math.floor(Math.random()*20)
     // console.log('button is clicked')
 
@@ -17,11 +17,11 @@ let makePassword = () => {
     
     console.log(`the password is ${pass}`)
 
-    passSpan.innerHTML = ''
-
+    
     inputText(pass.join(''))
 }
 
 let inputText = (passwordText) =>{
-    passSpan.innerText = passwordText
+    passSpan.innerHTML = ''
+    passSpan.innerHTML = passwordText
 }
