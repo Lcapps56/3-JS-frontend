@@ -1,37 +1,40 @@
-const passSpan = document.querySelector('.input-box input'),
-passLower = document.querySelector('#lowercase'),
-passUpper = document.querySelector("#uppercase"),
-passNumbers = document.querySelector("#numbers"),
-passSymbols = document.querySelector("#symbols"),
+const lengthSlider = document.querySelector('.pass-length input'),
 generateBtn = document.querySelector('.generate-btn'),
-settingsList = document.querySelector('.options'),
-settings = settingsList.getElementsByTagName('input')
+options = document.querySelectorAll('.option input')
 
-let lowerCase
-let upperCase
-let numbers
-let symbols
+let characters = {
+    lower: 'abcdefghijklmnopqrstuvwxyz',
+    upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    numbers: '0123456789',
+    special: '^!$%&|[](){}:;.,*+-#@<>~'
+}
+let staticPassword = ''
 
+let generatePassword = () =>{
 
+    let randomPassword = ''
+    let passLength = lengthSlider.value
 
-generateBtn.addEventListener('click', ()=> {
-    checkParam()
-})
+    options.forEach(option =>{
+        if(option.checked){
+            staticPassword += characters[option.id]
+        }
+    })
 
-let checkParam = () =>{
-    for(let i=0; i<settings.length; i++){
-        console.log(settings[i].checked)
+    for (let i=0;i<passLength; i++){
+        randomPassword += staticPassword(Math.floor(Math.random()*staticPassword.length))
     }
+    console.log(staticPassword)
 
-    // settings.forEach(()=>{
-    //     if(setting.checked){
-    //         console.log(checked)
-    //     }
-    // })
-    console.log(settings)
 }
 
 
+const updateSlider = () => {
+    document.querySelector('.pass-length span').innerText = lengthSlider.value
+}
+
+lengthSlider.addEventListener('input', updateSlider)
+generateBtn.addEventListener('click', generatePassword)
 
 
 
@@ -47,36 +50,74 @@ let checkParam = () =>{
 
 
 
+// const alphabet = [ "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],
+// specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "="],
+// numbersUse = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+// characters = [...alphabet, ...specialChar, ...numbersUse],
+// passSpan = document.querySelector('.input-box input'),
+// passLower = document.querySelector('#lowercase'),
+// passUpper = document.querySelector("#uppercase"),
+// passNumbers = document.querySelector("#numbers"),
+// passSymbols = document.querySelector("#symbols"),
+// generateBtn = document.querySelector('.generate-btn'),
+// settingsList = document.querySelector('.options'),
+// settingsText = settingsList.getElementsByTagName('input')
 
+// // let settings = []
+// let pass = []
+// let lowerCase,
+// upperCase,
+// numbers,
+// symbols
 
+// generateBtn.addEventListener('click', ()=> {
+//     checkParam()
+//     makePassword()
+//     cleanPassword(pass, lowerCase, upperCase, numbers, symbols)
+// })
 
+// let checkParam = () =>{
+//     lowerCase = settingsText[0].checked
+//     upperCase = settingsText[1].checked
+//     numbers = settingsText[2].checked
+//     symbols = settingsText[3].checked
 
-
-
-// const passSpan = document.querySelector('#password')
-// const alphabet = [ "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-// // const alphabet = []
-// const specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "="]
-// const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-// const characters = [...alphabet,...specialChar,...numbers]
-
+//     return lowerCase, upperCase, numbers, symbols
+// }
 
 // let makePassword = () => {
-//     let pass = []
 //     let passLength = Math.floor(Math.random()*20)
 //     // console.log('button is clicked')
-
 //     for (let i=0;i<passLength; i++){
 //         pass.push(characters[Math.floor(Math.random() * characters.length)])
-//     }
-    
-//     console.log(`the password is ${pass}`)
-
-    
-//     inputText(pass.join(''))
+//     } 
+//     // pass = pass.join('')
+//     return pass
 // }
 
-// let inputText = (passwordText) =>{
-//     passSpan.innerHTML = ''
-//     passSpan.innerHTML = passwordText
+// let cleanPassword = (CPass, lower, upper, numb, symb) => {
+//     if(lower){
+//         for (let i=0; i<CPass.length; i++){
+//             for(let x=0; x<alphabet.length; x++){
+//                 if (CPass[i].includes(alphabet[x].toLowerCase)){
+//                     CPass = CPass.splice(i, 1)
+//                     return CPass
+//                 }
+//             }
+//         }
+//     }else {}
+//     if(upper){
+//         for (let i=0; i<CPass.length; i++){
+//             for(let x=0; x<alphabet.length; x++){
+//                 if (CPass[i].includes(alphabet[x])){
+//                     console.log(CPass)
+//                     CPass = CPass.splice(i, 1)
+//                     console.log(CPass)
+//                     return CPass
+//                 }
+//             }
+//         }
+//     } else{}
+//     console.log(`the password now is${CPass.join('')}`)
 // }
+
