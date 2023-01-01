@@ -1,6 +1,7 @@
 const lengthSlider = document.querySelector('.pass-length input'),
 generateBtn = document.querySelector('.generate-btn'),
 options = document.querySelectorAll('.option input')
+const passText = document.querySelector('.input-box input')
 
 let characters = {
     lower: 'abcdefghijklmnopqrstuvwxyz',
@@ -14,17 +15,33 @@ let generatePassword = () =>{
 
     let randomPassword = ''
     let passLength = lengthSlider.value
+    let excludeDuplicats = false
 
     options.forEach(option =>{
         if(option.checked){
-            staticPassword += characters[option.id]
+            if(option.id !== 'exc-duplicate' && option.id !== 'spaces'){
+                staticPassword += characters[option.id]
+            } else if(option.id === 'spaces'){
+                staticPassword += ` ${staticPassword} `
+            } else{
+                excludeDuplicats = true
+            }
         }
     })
 
     for (let i=0;i<passLength; i++){
-        randomPassword += staticPassword(Math.floor(Math.random()*staticPassword.length))
+        let randomChar = staticPassword[Math.floor(Math.random()*staticPassword.length)]
+        if(excludeDuplicats){
+            !randomPassword.includes(randomChar) || randomChar == " " ?randomPassword += randomChar : i--
+        } else{
+            randomPassword += randomChar
+        }
     }
-    console.log(staticPassword)
+
+    passText.placeholder = randomPassword
+
+
+    console.log(randomPassword)
 
 }
 
