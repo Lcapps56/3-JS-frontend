@@ -12,10 +12,11 @@ let checkPalindrome = () => {
     console.log(word, wordReverse)
 
     if(word.toString() === wordReverse.toString()){
-        console.log('palindrome')
+        feedbackMsg.innerText = `${word.join('')} is a palindrome`
     }else{
-        console.log('not palindrome')
+        feedbackMsg.innerText = `${word.join('')} is not a palindrome`
     }
+    feedbackMsg.style.display = 'block'
 }
 
 checkPalindromeBtn.addEventListener('click', ()=>{
