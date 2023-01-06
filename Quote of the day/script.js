@@ -31,8 +31,7 @@ newQuoteBtn.addEventListener('click', ()=>{
     getNewQuote()
 })
 copyTxt.addEventListener('click', () => {
-    quoteText.value
-    navigator.clipboard.writeText(quoteText.textContent)
+    navigator.clipboard.writeText(quoteText.innerText)
 } )
 
 let usedQuotes = []
