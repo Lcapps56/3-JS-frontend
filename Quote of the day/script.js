@@ -1,7 +1,8 @@
 const quoteText = document.querySelector('.quote'),
 authorText = document.querySelector('.name'),
 newQuoteBtn = document.querySelector('.features button'),
-copyTxt = document.querySelector('.copy')
+copyTxt = document.querySelector('.copy'),
+readBtn = document.querySelector('.speech'),
 quotes = [
     {
         id: 1,
@@ -33,6 +34,16 @@ newQuoteBtn.addEventListener('click', ()=>{
 copyTxt.addEventListener('click', () => {
     navigator.clipboard.writeText(quoteText.innerText)
 } )
+readBtn.addEventListener('click', () => {
+    let msgAuthor = new SpeechSynthesisUtterance()
+    let msgQuote = new SpeechSynthesisUtterance()
+    msgAuthor.text = authorText.innerText
+    msgQuote.text = quoteText.innerText
+
+    window.speechSynthesis.speak(msgQuote);
+    window.speechSynthesis.speak(msgAuthor);
+
+})
 
 let usedQuotes = []
 let getNewQuote = () => {
