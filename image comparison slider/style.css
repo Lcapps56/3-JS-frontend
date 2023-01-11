@@ -46,15 +46,13 @@ html, body{
     height: 486px;
     width: 3px;
     background: #fff;
-    -webkit-appearance: none;
-
 }
 .slider .drag-line{
     width: 3px;
     height: 486px;
     position: absolute;
-    background: red;
-    left: 49.86%;
+    background: none;
+    left: 49.80%;
 }
 .slider .drag-line::before,
 .slider .drag-line::after{
@@ -62,5 +60,39 @@ html, body{
     content: "";
     width: 100%;
     height: 222px;
-    background: red;
+    background: #fff;
+}
+.slider .drag-line::before{
+    top: 0;
+}
+.slider .drag-line::after{
+    bottom: 0;
+}
+.slider .drag-line span{
+    height: 42px;
+    width: 42px;
+    border: 3px solid #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+.slider .drag-line span::before,
+.slider .drag-line span::after{
+    position: absolute;
+    content: "";
+    top: 50%;
+    border: 10px solid transparent; 
+    border-bottom-width: 0px;;
+    border-right-width: 0px;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.slider .drag-line span::before{
+    left: 40%;
+    border-left-color: #fff;
+}
+.slider .drag-line span::after{
+    left: 60%;
+    border-top-color: #fff;
 }
