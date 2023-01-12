@@ -1,9 +1,8 @@
-const startBtn = document.querySelector('.start')
-
+const startBtn = document.querySelector('.start'),
+gameRunning = false
 let gameBtns = document.querySelector('.game').getElementsByTagName('button')
 
 gameBtns = Array.from(gameBtns)
-
 console.log(gameBtns)
 
 const gameVals = [
@@ -13,14 +12,17 @@ const gameVals = [
 ]
 const winningVals = {
     one: [0, 1, 2],
-    2: [3, 4, 5],
-    3: [6, 7, 8],
-    4: [6, 4, 3], 
-    5: [0, 4, 8],
-    6: [0, 3, 6],
-    7: [1, 4, 5],
-    8: [2, 5, 8]
+    two: [3, 4, 5],
+    three: [6, 7, 8],
+    four: [6, 4, 3], 
+    five: [0, 4, 8],
+    six: [0, 3, 6],
+    seven: [1, 4, 5],
+    eight: [2, 5, 8]
 }
+
+
+
 
 gameBtns.forEach(function(btn){
     btn.addEventListener('click', function(){
@@ -30,24 +32,15 @@ gameBtns.forEach(function(btn){
     })
 })
 let checkGameState = () => {
-    // console.log(gameVals[winningVals.one[0]])
-    
-    // THIS CODE WORKS JUST REPEAT FOR EACH
-    if (gameVals[winningVals.one[0]] && gameVals[winningVals.one[1]] && gameVals[winningVals.one[2]]){
-        console.log("won")
-    }else{
-        console.log('not won')
-    }
-
-
-
-
-
-
-
-
-    // for (let i=0; i<winnigVals.length; i++){
+    for (val in winningVals){
+        console.log(winningVals[val][0])
         
-    // }
-
+        if(gameVals[winningVals[val][0]] && gameVals[winningVals[val][1]] && gameVals[winningVals[val][2]]){
+            alert('game won')
+            gameRunning = false
+        }else{
+        }
+    }
 }
+
+
