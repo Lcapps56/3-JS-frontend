@@ -1,15 +1,22 @@
 const startBtn = document.querySelector('.start')
 let gameRunning = false
 let gameBtns = document.querySelector('.game').getElementsByTagName('button')
-
+let currentPlayer = "X"
 gameBtns = Array.from(gameBtns)
 console.log(gameBtns)
 
-const gameVals = [
+let XgameVals = [
     false, false, false,
     false, false, false,
     false, false, false
 ]
+let OgameVals = [
+    false, false, false,
+    false, false, false,
+    false, false, false
+]
+
+
 const winningVals = {
     one: [0, 1, 2],
     two: [3, 4, 5],
@@ -22,13 +29,38 @@ const winningVals = {
 }
 
 startBtn.addEventListener('click', () => {
-    clearBoard()
     gameRunning = true
     gameBtns.forEach(function(btn){
+        btn.innerHTML = ''
         btn.addEventListener('click', function(){
-            gameVals[this.value] = true
-            console.log(gameVals)
-            checkGameState()
+            // if the spot clicked is available
+            if(!this.textContent){
+                // put current palyers mark in spot
+                this.innerHTML = currentPlayer
+                // changing the currentplayers array of scores (true and false array)
+                if(currentPlayer === "X"){
+                    XgameVals[this.value] = true
+                    checkGameState()
+                    currentPlayer = "O"
+                }else{
+                    OgameVals[this.value] = true
+                    checkGameState()
+                    currentPlayer = "X"
+                }
+
+
+
+                // gameVals[this.value] = true
+                // console.log(gameVals)
+                // checkGameState()
+            }else{
+                alert('you cannont cick this')
+            }
+
+
+
+
+                
         })
     }) 
 })
@@ -36,7 +68,7 @@ startBtn.addEventListener('click', () => {
 let checkGameState = () => {
     if(gameRunning){
         for (val in winningVals){
-            if(gameVals[winningVals[val][0]] && gameVals[winningVals[val][1]] && gameVals[winningVals[val][2]]){
+            if(XgameVals[winningVals[val][0]] && XgameVals[winningVals[val][1]] && XgameVals[winningVals[val][2]] || OgameVals[winningVals[val][0]] && OgameVals[winningVals[val][1]] && OgameVals[winningVals[val][2]]){
                 alert('game won')
                 gameRunning = false
                 location.reload()
@@ -48,8 +80,6 @@ let checkGameState = () => {
     }
 }
 
-function clearBoard () {
-    gameBtns.forEach(function(btn){
-        btn.innerHTML = ''
-    })
+function computerTurn(){
+
 }
