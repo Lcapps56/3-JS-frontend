@@ -1,4 +1,5 @@
-const startBtn = document.querySelector('.start')
+const startBtn = document.querySelector('.startS'),
+startComp = document.querySelector('.startC')
 let gameRunning = false
 let gameBtns = document.querySelector('.game').getElementsByTagName('button')
 let currentPlayer = "X"
@@ -15,8 +16,6 @@ let OgameVals = [
     false, false, false,
     false, false, false
 ]
-
-
 const winningVals = {
     one: [0, 1, 2],
     two: [3, 4, 5],
@@ -28,7 +27,30 @@ const winningVals = {
     eight: [2, 5, 8]
 }
 
-startBtn.addEventListener('click', () => {
+
+
+startBtn.addEventListener('click', function(){singlePlayer()})
+startComp.addEventListener('click', function(){computerGame()})
+
+let computerGame = () => {
+    gameRunning = true
+    gameBtns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+            if (currentPlayer === "X"){
+                if(!this.textContent){
+                    this.innerHTML = currentPlayer
+                        XgameVals[this.value] = true
+                        checkGameState()
+                        currentPlayer = "O"
+                }else{
+                    alert("you cannot click this")
+                }
+            }
+        })
+    })
+}
+
+let singlePlayer = () => {
     gameRunning = true
     gameBtns.forEach(function(btn){
         btn.innerHTML = ''
@@ -54,7 +76,9 @@ startBtn.addEventListener('click', () => {
     
         })
     }) 
-})
+}
+    
+
 
 let checkGameState = () => {
     if(gameRunning){

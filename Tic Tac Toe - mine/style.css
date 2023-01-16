@@ -36,7 +36,7 @@ main{
     font-size: 25px;
     font-weight: bold;
 }
-.start{
+.startS, .startC{
     margin-top: 30px;
     background: rgb(248, 221, 172);
     padding: 12px 20px;
