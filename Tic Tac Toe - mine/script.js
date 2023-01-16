@@ -24,7 +24,7 @@ const winningVals = {
     four: [6, 4, 2], 
     five: [0, 4, 8],
     six: [0, 3, 6],
-    seven: [1, 4, 5],
+    seven: [1, 4, 7],
     eight: [2, 5, 8]
 }
 
@@ -44,23 +44,14 @@ startBtn.addEventListener('click', () => {
                     currentPlayer = "O"
                 }else{
                     OgameVals[this.value] = true
+                    console.log(OgameVals)
                     checkGameState()
                     currentPlayer = "X"
                 }
-
-
-
-                // gameVals[this.value] = true
-                // console.log(gameVals)
-                // checkGameState()
             }else{
                 alert('you cannont cick this')
             }
-
-
-
-
-                
+    
         })
     }) 
 })
@@ -72,7 +63,6 @@ let checkGameState = () => {
                 alert('game won')
                 gameRunning = false
                 location.reload()
-                // continue
             }else{
             }
         }
