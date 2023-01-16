@@ -4,8 +4,7 @@ let gameRunning = false
 let gameBtns = document.querySelector('.game').getElementsByTagName('button')
 let currentPlayer = "X"
 gameBtns = Array.from(gameBtns)
-console.log(gameBtns)
-
+let computerGuess
 let XgameVals = [
     false, false, false,
     false, false, false,
@@ -27,14 +26,13 @@ const winningVals = {
     eight: [2, 5, 8]
 }
 
-
-
 startBtn.addEventListener('click', function(){singlePlayer()})
 startComp.addEventListener('click', function(){computerGame()})
 
 let computerGame = () => {
     gameRunning = true
     gameBtns.forEach(function(btn){
+        btn.innerHTML = ''
         btn.addEventListener('click', function(){
             if (currentPlayer === "X"){
                 if(!this.textContent){
@@ -45,6 +43,8 @@ let computerGame = () => {
                 }else{
                     alert("you cannot click this")
                 }
+            } else{
+                computerTurn()
             }
         })
     })
@@ -77,8 +77,6 @@ let singlePlayer = () => {
         })
     }) 
 }
-    
-
 
 let checkGameState = () => {
     if(gameRunning){
@@ -95,5 +93,16 @@ let checkGameState = () => {
 }
 
 function computerTurn(){
+    computerGuess = Math.floor(Math.random()*OgameVals.length-1)
+    console.log(computerGuess)
+    if(OgameVals[computerGuess] || XgameVals[computerGuess]){
+        alert("you cannot click this")
+    }else{
 
+        document.querySelector(`[value='${computerGuess}']`).innerHTML = "O"
+
+        OgameVals[computerGuess] = true
+        checkGameState()
+        currentPlayer = "X"
+    }
 }
